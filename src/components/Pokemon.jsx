@@ -2,13 +2,7 @@ import { useState, useEffect } from "react"
 
 export default function Pokemon() {
 
-    function Stats() {
 
-    }
-
-    function Moves() {
-
-    }
     const [APIData, setAPIData] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -30,7 +24,27 @@ export default function Pokemon() {
         return <p>{pokemonName}</p>
     }
 
+    function Stats() {
+        const pokeStats = APIData.stats.map(stat => <li>{stat.base_stat}</li>)
+        return pokeStats
+    }
+
+    function Moves() {
+        const pokeMoves = APIData.moves.map(move => <li>{move.move.name}</li>)
+        return pokeMoves
+    }
+
+    function Img() {
+        const pokeImg = <img src={ APIData.sprites.front_default }></img>
+        return pokeImg
+    }
+
     return (
-        <div>{ getName() }</div>
+        <div>
+            Pokemon Name: { getName() }
+            Image: { Img() }
+            Stats: { Stats() }
+            Moves: { Moves() }
+        </div>
     )
 }
