@@ -1,11 +1,15 @@
 import './App.css'
-import APIFetcher from './components/APIFetcher.jsx'
+import Header from './components/Header.jsx'
+import Pokemon from './components/Pokemon.jsx'
+import Footer from './components/Footer.jsx'
 
 function App() {
 
   return (
     <>
-      <APIFetcher />
+      <Header />
+      <Pokemon />
+      <Footer />
     </>
   )
 }

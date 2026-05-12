@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react"
 
-export default function APIFetcher() {
+export default function Pokemon() {
+
+    function Stats() {
+
+    }
+
+    function Moves() {
+
+    }
     const [APIData, setAPIData] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -26,4 +34,3 @@ export default function APIFetcher() {
         <div>{ getName() }</div>
     )
 }
-
