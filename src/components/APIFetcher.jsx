@@ -7,7 +7,8 @@ export default function APIFetcher() {
         fetch("https://pokeapi.co/api/v2/pokemon/ditto")
             .then(res => res.json())
             .then(data => setAPIData(data))
-    }
-    )
+    }, [])
+
+    console.log(APIData);
 }
 
