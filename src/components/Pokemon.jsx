@@ -2,15 +2,23 @@ import { useState, useEffect } from "react"
 
 export default function Pokemon() {
 
-
     const [APIData, setAPIData] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        const cachedPokemon = localStorage.getItem("ditto")
+
+        if(cachedPokemon) {
+            setAPIData(JSON.parse(cachedPokemon))
+            setLoading(false)
+            return
+        }
         fetch("https://pokeapi.co/api/v2/pokemon/ditto")
             .then(res => res.json())
             .then(data => {
                 setAPIData(data)
+
+                localStorage.setItem("ditto", JSON.stringify(data))
                 setLoading(false)
             })
     }, [])
