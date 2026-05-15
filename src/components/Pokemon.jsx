@@ -15,7 +15,7 @@ function PokemonStats({ stats }) {
         <ul>
             {stats.map(stat =>
                 <li key={stat.stat.name}>
-                    {capitalize(stat.stat.name)} - {stat.base_stat}
+                    <strong>{capitalize(stat.stat.name)}:</strong> {stat.base_stat}
                 </li>)
             }
         </ul>
@@ -39,11 +39,11 @@ function PokemonImage({ sprite, name }) {
 }
 
 function PokemonHeight({ height }) {
-    return <p>Height: {height / 10} m</p>
+    return <p><strong>Height:</strong> {height / 10} m</p>
 }
 
 function PokemonWeight({ weight }) {
-    return <p>Weight: {weight} kg</p>
+    return <p><strong>Weight:</strong> {weight / 10} kg</p>
 }
 
 function PokemonAbilities({ abilities }) {
@@ -52,7 +52,7 @@ function PokemonAbilities({ abilities }) {
 
     return (
         <div>
-            <h3> Abilities</h3>
+            <h3> Main Abilities</h3>
             <ul>
                 {notHiddenAbilities.map(ability =>
                     <li key={ability.ability.name}>
@@ -69,7 +69,6 @@ function PokemonAbilities({ abilities }) {
                     </li>)
                 }
             </ul>
-
         </div>
     )
 }
@@ -104,7 +103,7 @@ export default function Pokemon() {
 
 
     return (
-        <div>
+        <div className="pokemon-card">
             <h2>Pokemon Name</h2>
             <PokemonName name={APIData.name} />
             <PokemonImage

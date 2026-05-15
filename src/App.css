@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.pokemon-card h2 {
+    text-align: center;
+}
+
+.pokemon-card p {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pokemon-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pokemon-card li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
