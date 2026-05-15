@@ -74,33 +74,49 @@ function PokemonAbilities({ abilities }) {
 }
 
 
-export default function Pokemon() {
+export default function Pokemon({ pokemonId }) {
 
-    const [APIData, setAPIData] = useState([])
+    const [APIData, setAPIData] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
 
     useEffect(() => {
-        const cachedPokemon = localStorage.getItem("ditto")
+        const id = pokemonId.trim().toLowerCase()
+        if (!id) return
 
+        setLoading(true)
+        setError('')
+
+        const cachedPokemon = localStorage.getItem(id)
         if (cachedPokemon) {
             setAPIData(JSON.parse(cachedPokemon))
             setLoading(false)
             return
         }
-        fetch("https://pokeapi.co/api/v2/pokemon/ditto")
-            .then(res => res.json())
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Pokemon not found')
+                }
+                return res.json()
+            })
             .then(data => {
                 setAPIData(data)
-
-                localStorage.setItem("ditto", JSON.stringify(data))
+                localStorage.setItem(id, JSON.stringify(data))
+            })
+            .catch(err => {
+                setError(err.message)
+                setAPIData(null)
+            })
+            .finally(() => {
                 setLoading(false)
             })
-    }, [])
+    }, [pokemonId])
 
     if (loading) return <p>Loading...</p>
-
-    console.log(APIData);
-
+    if (error) return <p>{error}</p>
+    if (!APIData) return <p>No data available.</p>
 
     return (
         <div className="pokemon-card">
